@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="1103.0" style="-fx-background-color: #353b48;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.MainSceneController">
+   <children>
+      <Label layoutX="13.0" layoutY="11.0" prefHeight="39.0" prefWidth="168.0" text="Java Method Analyzer" textFill="#f5f6fa">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Separator layoutX="12.0" layoutY="52.0" prefHeight="8.0" prefWidth="1074.0" />
+      <TextArea fx:id="codeArea" layoutX="14.0" layoutY="96.0" prefHeight="424.0" prefWidth="404.0" promptText="Code" style="-fx-background-color: #303030;;">
+         <font>
+            <Font size="15.0" />
+         </font></TextArea>
+      <Button fx:id="analyzeButton" defaultButton="true" layoutX="969.0" layoutY="538.0" mnemonicParsing="false" onAction="#analyzeMethod" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #dcdde1;" text="Analyze" textFill="#353b48" />
+      <TextArea fx:id="logsArea" editable="false" layoutX="429.0" layoutY="96.0" prefHeight="424.0" prefWidth="659.0" promptText="Logs" style="-fx-background-color: #303030;" />
+      <Label layoutX="15.0" layoutY="58.0" prefHeight="39.0" prefWidth="168.0" text="Enter your code here" textFill="#dcdde1">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="429.0" layoutY="58.0" prefHeight="39.0" prefWidth="168.0" text="Logs" textFill="#dcdde1">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
