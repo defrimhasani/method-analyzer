@@ -21,8 +21,6 @@ import logic.parser.GenericException;
 
 public class MainSceneController
 {
-	private Analyzer analyzer;
-
 	@FXML
 	private Button analyzeButton;
 
@@ -32,14 +30,14 @@ public class MainSceneController
 	@FXML
 	private TextArea logsArea;
 
-	public MainSceneController()
-	{
-		analyzer = new Analyzer();
-	}
 
 	@FXML
 	void analyzeMethod(ActionEvent event)
 	{
+		logsArea.clear();
+
+		Analyzer analyzer = new Analyzer();
+
 		FinalCollectedData finalCollectedData;
 
 		try
@@ -64,13 +62,11 @@ public class MainSceneController
 			{
 				File process = new ReportGenerator(finalCollectedData, directory.getAbsolutePath()).process();
 
-				if(process != null){
-
+				if (process != null)
+				{
 					Desktop.getDesktop().open(process);
 				}
 			}
-
-
 		}
 		catch (GenericException e)
 		{
@@ -92,7 +88,6 @@ public class MainSceneController
 		StringBuilder stringBuilder = new StringBuilder();
 
 		Map<AnalyzerTask.Task, ArrayList<String>> logMessages = finalCollectedData.getLogMessages();
-
 
 
 		logMessages.forEach((key, value) -> {

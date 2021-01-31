@@ -47,7 +47,7 @@ public class MethodInputDataGenerator extends AnalyzerTask
 			{
 				log(GENERATE_DATA_FOR_PARAMETERS, INFORMATION, "Parameter {0} is a primitive data type. Generating random data", parameter);
 				parameterData.setInputExamples(primitiveDataGenerator
-						.getPrimitiveDataExamples(4, type.asPrimitiveType()));
+						.getPrimitiveDataExamples(4, type));
 			}
 			else if (DataTypeUtils.isString(type))
 			{

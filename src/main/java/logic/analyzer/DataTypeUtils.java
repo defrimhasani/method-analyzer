@@ -31,18 +31,12 @@ public final class DataTypeUtils
 			this.boxedObject = boxedObject;
 		}
 
-		public static PrimitiveDataType getType(PrimitiveType primitiveType)
-		{
-			return Arrays.stream(PrimitiveDataType.values())
-					.filter(value -> value.getUnboxedKeyword().equals(primitiveType.getType().asString()))
-					.findFirst()
-					.orElse(null);
-		}
 
 		public static PrimitiveDataType getType(Type primitiveType)
 		{
 			return Arrays.stream(PrimitiveDataType.values())
-					.filter(value -> value.getBoxedObject().equals(primitiveType.asString()))
+					.filter(value -> value.getBoxedObject().equalsIgnoreCase(primitiveType.asString()) ||
+							value.getUnboxedKeyword().equalsIgnoreCase(primitiveType.asString()))
 					.findFirst()
 					.orElse(null);
 		}
@@ -55,56 +49,56 @@ public final class DataTypeUtils
 		return dataType!= null;
 	}
 
-	public static boolean isByte(final PrimitiveType type)
+	public static boolean isByte(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.BYTE);
 	}
 
-	public static boolean isChar(final PrimitiveType type)
+	public static boolean isChar(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.CHAR);
 	}
 
-	public static boolean isShort(final PrimitiveType type)
+	public static boolean isShort(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.SHORT);
 	}
 
-	public static boolean isInteger(final PrimitiveType type)
+	public static boolean isInteger(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.INTEGER);
 	}
 
-	public static boolean isLong(final PrimitiveType type)
+	public static boolean isLong(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.LONG);
 	}
 
-	public static boolean isFloat(final PrimitiveType type)
+	public static boolean isFloat(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.FLOAT);
 	}
 
-	public static boolean isDouble(final PrimitiveType type)
+	public static boolean isDouble(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 
 		return dataType != null && dataType.equals(PrimitiveDataType.DOUBLE);
 	}
 
-	public static boolean isBoolean(final PrimitiveType type)
+	public static boolean isBoolean(final Type type)
 	{
 		PrimitiveDataType dataType = PrimitiveDataType.getType(type);
 

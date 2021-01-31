@@ -12,9 +12,8 @@ import logic.analyzer.complexity.ComplexityAnalyzer;
 import logic.analyzer.dataAnalyzer.conditionAnalyzer.ConditionAnalyzer;
 import logic.analyzer.dataAnalyzer.conditionAnalyzer.MethodAnalyzer;
 import logic.analyzer.dataAnalyzer.conditionAnalyzer.TestCaseCalculator;
-import logic.models.AnalyzedMethodResult;
 import logic.analyzer.inputData.MethodInputDataGenerator;
-import logic.analyzer.inputData.RandomInputDataResult;
+import logic.models.AnalyzedMethodResult;
 import logic.models.ConditionData;
 import logic.models.FinalCollectedData;
 import logic.parser.MethodParser;
@@ -96,6 +95,7 @@ public class Analyzer
 		finalCollectedData.setConditionData(conditionData);
 
 		finalCollectedData.setMaxTestCases(testCaseCalculator.getNumberOfTestCases(method));
+		finalCollectedData.addLogContent(testCaseCalculator.getContent());
 
 
 		return finalCollectedData;

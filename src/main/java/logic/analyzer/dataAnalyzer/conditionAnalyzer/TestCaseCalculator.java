@@ -1,5 +1,8 @@
 package logic.analyzer.dataAnalyzer.conditionAnalyzer;
 
+import static logic.analyzer.AnalyzerTask.Severity.INFORMATION;
+import static logic.analyzer.AnalyzerTask.Task.CALCULATE_TEST_CASES;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,11 @@ public class TestCaseCalculator extends AbstractAnalyzer
 {
 	public int getNumberOfTestCases(final MethodDeclaration methodDeclaration)
 	{
+		log(CALCULATE_TEST_CASES,
+				INFORMATION,
+				"Calculating number of test cases for {0}",
+				methodDeclaration.getNameAsString());
+
 		List<Expression> result = new ArrayList<>();
 		List<Expression> duplicates = new ArrayList<>();
 
@@ -31,8 +39,16 @@ public class TestCaseCalculator extends AbstractAnalyzer
 			processStatement(statement, parameters, result, duplicates);
 		}
 
+		int total = (result.size() * 2) - duplicates.size();
 
-		return (result.size() * 2) - duplicates.size();
+		log(CALCULATE_TEST_CASES,
+				INFORMATION,
+				"There are {0} condition expressions that are dependent on method parameters, where {1} are duplicates" +
+						" so max number of test cases is 2 * (number of condition expressions) - duplicates = {2}",
+				result.size(), duplicates.size(), total);
+
+
+		return total;
 	}
 
 	public void processStatement(Statement statement, NodeList<Parameter> parameters, List<Expression> result, List<Expression> duplicates)
@@ -54,7 +70,6 @@ public class TestCaseCalculator extends AbstractAnalyzer
 					processStatement(innerStatement, parameters, result, duplicates);
 				}
 			}
-
 		}
 
 		if (statement.isForStmt())
@@ -124,7 +139,6 @@ public class TestCaseCalculator extends AbstractAnalyzer
 			}
 
 		}
-
 		return false;
 	}
 

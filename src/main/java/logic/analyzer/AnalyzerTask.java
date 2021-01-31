@@ -26,8 +26,7 @@ public class AnalyzerTask
 		CALCULATE_TEST_CASES("Task that calculates number of test cases"),
 		ANALYZE_CONDITIONS("Task that analyzes conditions");
 
-
-		private String content;
+		private final String content;
 
 		Task(String content)
 		{
