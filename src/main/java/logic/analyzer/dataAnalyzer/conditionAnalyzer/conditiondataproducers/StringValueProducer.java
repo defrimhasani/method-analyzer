@@ -12,7 +12,7 @@ public class StringValueProducer
 
 	public String getStringValue(String currentValue, String methodName, boolean positiveResult)
 	{
-		if (methodName.equals(STARTS_WITH))
+		if (methodName.equalsIgnoreCase(STARTS_WITH))
 		{
 			if (positiveResult)
 			{
@@ -23,7 +23,7 @@ public class StringValueProducer
 				return StringUtils.reverse(currentValue) + currentValue;
 			}
 		}
-		if (methodName.equals(ENDS_WITH))
+		if (methodName.equalsIgnoreCase(ENDS_WITH))
 		{
 			if (positiveResult)
 			{
@@ -34,7 +34,7 @@ public class StringValueProducer
 				return currentValue + StringUtils.reverse(currentValue);
 			}
 		}
-		if (methodName.equals(EQUALS))
+		if (methodName.equalsIgnoreCase(EQUALS))
 		{
 			if (positiveResult)
 			{

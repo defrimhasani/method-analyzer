@@ -4,6 +4,8 @@ package logic.analyzer.complexity;
 import static logic.analyzer.AnalyzerTask.Severity.INFORMATION;
 import static logic.analyzer.AnalyzerTask.Task.CALCULATE_CYCLOMATIC_COMPLEXITY;
 
+import java.util.Optional;
+
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
@@ -72,9 +74,15 @@ public class ComplexityAnalyzer extends AnalyzerTask
 				statements.forEach(innerStatement -> processBlock(innerStatement, counter, methodDeclaration));
 
 			}
+
+			Optional<Statement> elseStmt = ((IfStmt) statement).getElseStmt();
+
+			elseStmt.ifPresent(value -> processBlock(value, counter, methodDeclaration));
+
+
 		}
 
-		if (statement.isForStmt() || statement.isWhileStmt() || statement.isDoStmt() || statement.isBreakStmt() || statement.isContinueStmt())
+		if (statement.isForStmt() || statement.isWhileStmt() || statement.isDoStmt()  || statement.isBreakStmt() || statement.isContinueStmt())
 		{
 			log(CALCULATE_CYCLOMATIC_COMPLEXITY,
 					INFORMATION,

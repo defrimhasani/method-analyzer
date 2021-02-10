@@ -4,6 +4,7 @@ import com.github.javaparser.ast.expr.ArrayAccessExpr;
 import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.FieldAccessExpr;
+import com.github.javaparser.ast.expr.MethodCallExpr;
 import logic.analyzer.AnalyzerTask;
 
 public class AbstractAnalyzer extends AnalyzerTask
@@ -49,6 +50,12 @@ public class AbstractAnalyzer extends AnalyzerTask
 			}
 
 
+		}
+		if(expression.isMethodCallExpr()){
+
+			MethodCallExpr methodCallExpr = expression.asMethodCallExpr();
+
+			return methodCallExpr.getScope().get().asNameExpr().getNameAsString();
 		}
 
 		return "";

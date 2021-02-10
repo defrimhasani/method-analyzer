@@ -74,9 +74,27 @@ public class IfStatementProcessor extends AnalyzerTask
 
 	private boolean expressionCanHaveVariables(Expression expression)
 	{
+		if (expression.isBinaryExpr())
+		{
+			return expression.asBinaryExpr().getRight().isNameExpr() || expression.asBinaryExpr().getLeft().isNameExpr() ||
+					expression.asBinaryExpr().getRight().isArrayAccessExpr() || expression.asBinaryExpr().getLeft().isArrayAccessExpr() ||
+					expression.asBinaryExpr().getRight().isFieldAccessExpr() || expression.asBinaryExpr().getLeft().isFieldAccessExpr();
+		}
 
-		return expression.asBinaryExpr().getRight().isNameExpr() || expression.asBinaryExpr().getLeft().isNameExpr() ||
-				expression.asBinaryExpr().getRight().isArrayAccessExpr() || expression.asBinaryExpr().getLeft().isArrayAccessExpr();
+		if (expression.isMethodCallExpr())
+		{
+
+			return true;
+		}
+
+		if (expression.isFieldAccessExpr())
+		{
+
+			return true;
+		}
+
+
+		return false;
 
 	}
 
