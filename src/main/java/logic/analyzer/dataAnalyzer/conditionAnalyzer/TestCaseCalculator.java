@@ -5,6 +5,7 @@ import static logic.analyzer.AnalyzerTask.Task.CALCULATE_TEST_CASES;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -68,6 +69,23 @@ public class TestCaseCalculator extends AbstractAnalyzer
 				for (Statement innerStatement : statements)
 				{
 					processStatement(innerStatement, parameters, result, duplicates);
+				}
+			}
+
+			Optional<Statement> elseStmt = ifStmt.getElseStmt();
+
+			if (elseStmt.isPresent())
+			{
+				boolean isBlockStatement = elseStmt.get().isBlockStmt();
+
+				if (isBlockStatement)
+				{
+					NodeList<Statement> statements = elseStmt.get().asBlockStmt().getStatements();
+
+					for (Statement innerStatement : statements)
+					{
+						processStatement(innerStatement, parameters, result, duplicates);
+					}
 				}
 			}
 		}
